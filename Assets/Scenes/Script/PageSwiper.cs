@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+//source: https://www.youtube.com/watch?v=rjFgThTjLso
 
 public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 {
@@ -54,5 +57,36 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
             transform.position = Vector3.Lerp(startpos, endpos, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
+    }
+
+    //Navigationbar
+    public Image cameraButton, galleryButton, buttonButton; //The images connected to buttons in bottombar should be assigned accordingly
+
+    public GameObject PanelLocationObject; //The 'Panel' should be assigned to this Gameobject.
+                                           //This gameobject is neccesarry for the panels location to directly, visually, change when using the bottombar. 
+
+    public Color highLighted = new Color(); // This color is used for the navigation bar
+    public Color notHighLighted = new Color(); // This color is used for the navigation bar
+
+    Vector3 cameraScreen = new Vector3(720, 1480, 0); //New vector3 based on the homeScreens location
+    Vector3 galleryScreen = new Vector3(-720, 1480, 0); //New vector3 based on the cameraScreens location
+    Vector3 buttonScreen = new Vector3(-2160, 1480, 0); //New vector3 based on the inventoryScreens location
+
+    public void OnClickHomeBottom() //Should be placed on Home button in bottombar
+    {
+
+        PanelLocationObject.transform.position = cameraScreen; //new Vector3(720, 1480, 0);
+        panelLocation = cameraScreen; //new Vector3(720, 1480, 0);
+
+        //HomeScreen is equal to _currentPage 1,
+        if (_currentPage == 2) //so if the _currentPage is equal to 2(CameraScreen) 
+        {
+            _currentPage--;
+        }
+        else if (_currentPage == 3) //or 3(InventoryScreen),
+        {
+            _currentPage = _currentPage - 2; //then the _currentPage variable should change based on direction of swipe.
+        }
+        _currentPageData.currentPage = 1;
     }
 }
