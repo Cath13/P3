@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//THIS SCRIPT HAS TO DO WITH NAVIGATION USING THE NAVIGATIONBAR
 public class UIHandler : MonoBehaviour
 {
-
-    //THE METHODS BELOW HAS TO DO WITH NAVIGATION USING THE BOTTOMBAR
-
     public Vector3 panelLocationVector; //Stores location of the panel
-    public int totalPages = 3;
-    private int _currentPage = 1; //Keeps track of the page that is currently visible
-
-    CurrentPageData _currentPageData;
 
     public Image cameraButton, galleryButton, inventoryButton; //The images connected to buttons in bottombar should be assigned accordingly
 
@@ -28,17 +22,6 @@ public class UIHandler : MonoBehaviour
 
         PanelLocationObject.transform.position = homeScreen; //new Vector3(720, 1480, 0);
         panelLocationVector = homeScreen; //new Vector3(720, 1480, 0);
-
-        //HomeScreen is equal to _currentPage 1,
-        if (_currentPage == 2) //so if the _currentPage is equal to 2(CameraScreen) 
-        {
-            _currentPage--;
-        }
-        else if (_currentPage == 3) //or 3(InventoryScreen),
-        {
-            _currentPage = _currentPage - 2; //then the _currentPage variable should change based on direction of swipe.
-        }
-        _currentPageData.currentPage = 1;
     }
 
     public void OnClickGalleryButton() //Should be placed on Camera button in bottombar
@@ -47,15 +30,6 @@ public class UIHandler : MonoBehaviour
         PanelLocationObject.transform.position = cameraScreen;//new Vector3(-720, 1480, 0);
         panelLocationVector = cameraScreen; //new Vector3(-720, 1480, 0);
 
-        if (_currentPage == 1)
-        {
-            _currentPage++;
-        }
-        else if (_currentPage == 3)
-        {
-            _currentPage--;
-        }
-        _currentPageData.currentPage = 2;
     }
 
     public void OnClickInventoryBottom() //Should be placed on Inventory button in bottombar
@@ -64,15 +38,6 @@ public class UIHandler : MonoBehaviour
         PanelLocationObject.transform.position = inventoryScreen;//new Vector3(-2160, 1480, 0);
         panelLocationVector = inventoryScreen;//new Vector3(-2160, 1480, 0);
 
-        if (_currentPage == 1)
-        {
-            _currentPage = _currentPage + 2;
-        }
-        else if (_currentPage == 2)
-        {
-            _currentPage++;
-        }
-        _currentPageData.currentPage = 3;
     }
 
  

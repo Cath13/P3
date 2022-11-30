@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//source: https://www.youtube.com/watch?v=c6NXkZWXHnc
+
 public class PhoneCamera : MonoBehaviour
 {
     private bool camAvailable;

@@ -4,15 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
+//Source: https://www.youtube.com/watch?v=YCWtFG3Jv80
+
 public class PickImage : MonoBehaviour
 {
 
     public string FinalPath;
 
 
-   public void LoadFile()
+
+    public void LoadFile()
     {
-        string Filetype = NativeFilePicker.ConvertExtensionToFileType("All files");
+        string Filetype = NativeFilePicker.ConvertExtensionToFileType("application/image/*");
 
         NativeFilePicker.Permission permission = NativeFilePicker.PickFile((path) =>
             {
@@ -36,7 +39,7 @@ public class PickImage : MonoBehaviour
     }
 
 
-    public Renderer Plane;
+    public GameObject Plane;
 
     IEnumerator LoadTexture()
     {
