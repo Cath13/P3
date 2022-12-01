@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//source: https://github.com/yasirkula/UnityNativeCamera
 
 public class AndroidCamera : MonoBehaviour
 {
-	public Button cameraButton;
 
 	void Update()
 	{
@@ -14,23 +14,10 @@ public class AndroidCamera : MonoBehaviour
 			// Don't attempt to use the camera if it is already open
 			if (NativeCamera.IsCameraBusy())
 				return;
-
-			if (cameraButton)
-			{
-				// Take a picture with the camera
-				// If the captured image's width and/or height is greater than 512px, down-scale it
-				TakePicture(1012);
-			}
-			/*else
-			{
-				// Record a video with the camera
-				RecordVideo();
-			}
-			*/
 		}
 	}
 
-	private void TakePicture(int maxSize)
+	public void TakePicture(int maxSize)
 	{
 		NativeCamera.Permission permission = NativeCamera.TakePicture((path) =>
 		{
@@ -49,7 +36,7 @@ public class AndroidCamera : MonoBehaviour
 				GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
 				quad.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.5f;
 				quad.transform.forward = Camera.main.transform.forward;
-				quad.transform.localScale = new Vector3(1f, texture.height / (float)texture.width, 1f);
+				quad.transform.localScale = new Vector3(1.4f, 2.2f, 1f);
 
 				Material material = quad.GetComponent<Renderer>().material;
 				if (!material.shader.isSupported) // happens when Standard shader is not included in the build
@@ -57,30 +44,9 @@ public class AndroidCamera : MonoBehaviour
 
 				material.mainTexture = texture;
 
-				//Destroy(quad, 5f);
-
-				// If a procedural texture is not destroyed manually, 
-				// it will only be freed after a scene change
-				//Destroy(texture, 5f);
 			}
 		}, maxSize);
 
 		Debug.Log("Permission result: " + permission);
 	}
-
-	/*private void RecordVideo()
-	{
-		NativeCamera.Permission permission = NativeCamera.RecordVideo((path) =>
-		{
-			Debug.Log("Video path: " + path);
-			if (path != null)
-			{
-				// Play the recorded video
-				Handheld.PlayFullScreenMovie("file://" + path);
-			}
-		});
-
-		Debug.Log("Permission result: " + permission);
-	}
-	*/
 }

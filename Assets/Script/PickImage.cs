@@ -15,7 +15,7 @@ public class PickImage : MonoBehaviour
 
     public void LoadFile()
     {
-        string Filetype = NativeFilePicker.ConvertExtensionToFileType("application/image/*");
+        string Filetype = NativeFilePicker.ConvertExtensionToFileType("All files");
 
         NativeFilePicker.Permission permission = NativeFilePicker.PickFile((path) =>
             {
@@ -39,7 +39,7 @@ public class PickImage : MonoBehaviour
     }
 
 
-    public GameObject Plane;
+    public Image Plane;
 
     IEnumerator LoadTexture()
     {

@@ -22,6 +22,7 @@ public class UIHandler : MonoBehaviour
 
         PanelLocationObject.transform.position = homeScreen; //new Vector3(720, 1480, 0);
         panelLocationVector = homeScreen; //new Vector3(720, 1480, 0);
+    
     }
 
     public void OnClickGalleryButton() //Should be placed on Camera button in bottombar
