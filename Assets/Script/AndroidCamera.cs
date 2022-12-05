@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class AndroidCamera : MonoBehaviour
 {
+	GameObject quad;
 
 	void Update()
 	{
@@ -15,6 +16,11 @@ public class AndroidCamera : MonoBehaviour
 			if (NativeCamera.IsCameraBusy())
 				return;
 		}
+
+	}
+    public void Destroy()
+    {
+			Destroy(quad);	
 	}
 
 	public void TakePicture(int maxSize)
@@ -33,10 +39,10 @@ public class AndroidCamera : MonoBehaviour
 				}
 
 				// Assign texture to a temporary quad and destroy it after 5 seconds
-				GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+				quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
 				quad.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.5f;
 				quad.transform.forward = Camera.main.transform.forward;
-				quad.transform.localScale = new Vector3(1.4f, 2.3f, 1f);
+				quad.transform.localScale = new Vector3(1.4f, 2.4f, 1f);
 
 				Material material = quad.GetComponent<Renderer>().material;
 				if (!material.shader.isSupported) // happens when Standard shader is not included in the build
@@ -44,10 +50,6 @@ public class AndroidCamera : MonoBehaviour
 
 				material.mainTexture = texture;
 
-				if(Input.GetMouseButtonDown(0))
-                {
-					Destroy(quad);
-                }
 			}
 		}, maxSize);
 
