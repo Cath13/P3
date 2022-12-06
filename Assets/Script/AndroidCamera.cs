@@ -18,10 +18,7 @@ public class AndroidCamera : MonoBehaviour
 		}
 
 	}
-    public void Destroy()
-    {
-			Destroy(quad);	
-	}
+   
 
 	public void TakePicture(int maxSize)
 	{
