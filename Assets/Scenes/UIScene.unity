@@ -569,7 +569,7 @@ MonoBehaviour:
   _workInEditor: 0
   _localHostMode: 0
   _localHost: 172.30.245.183
-  _localPort: 7001
+  _localPort: 7000
 --- !u!4 &186662186
 Transform:
   m_ObjectHideFlags: 0
@@ -927,8 +927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4043274b57c4c039efe20febc16183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Address: /example/1
-  Receiver: {fileID: 0}
+  Address: C:\Users\rinar\PycharmProjects\UnityColorRecognition\main.py
+  Receiver: {fileID: 186662185}
 --- !u!4 &450523692
 Transform:
   m_ObjectHideFlags: 0
