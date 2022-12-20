@@ -28,22 +28,17 @@ public class GalleryPicker : MonoBehaviour
 	{
 		NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
 		{
-			Debug.Log("Image path: " + path);
+			
 			if (path != null)
 			{
 				// Create Texture from selected image
 				Texture2D texture = NativeGallery.LoadImageAtPath(path, maxSize);
-				if (texture == null)
-				{
-					Debug.Log("Couldn't load texture from " + path);
-					return;
-				}
 
 				// Assign texture to a temporary quad and destroy it after 5 seconds
 				quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
 				quad.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.5f;
 				quad.transform.forward = Camera.main.transform.forward;
-				quad.transform.localScale = new Vector3(1.4f, 2.4f, 1f);
+				quad.transform.localScale = new Vector3(1.4f, 2.3f, 1f);
 
 				Material material = quad.GetComponent<Renderer>().material;
 				if (!material.shader.isSupported) // happens when Standard shader is not included in the build
@@ -54,6 +49,5 @@ public class GalleryPicker : MonoBehaviour
 			}
 		});
 
-		Debug.Log("Permission result: " + permission);
 	}
 }
